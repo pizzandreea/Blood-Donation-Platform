@@ -15,12 +15,11 @@ namespace Proiect.Controllers
     [ApiController]
     public class DonorsController : ControllerBase
     {
-        private readonly IDonorRepository _donorRepository;
+        private readonly AppDbContext _context;
 
-        public DonorsController(IDonorRepository donorRepository)
+        public DonorsController(AppDbContext context)
         {
-
-            _donorRepository = donorRepository;
+            _context = context;
         }
 
 
@@ -30,7 +29,7 @@ namespace Proiect.Controllers
             // select Id, first_name, last_name from patients
             //where donorid = id
             // transformam sql query intr o lista
-            var donorPatients = await _donorRepository.Patients.Where(x => x.DonorId == id).Select(x => new { Id = x.Id, FirstNamePatient = x.FirstName, LastNamePatient = x.LastName }).ToListAsync();
+            var donorPatients = await _context.Patients.Where(x => x.DonorId == id).Select(x => new { Id = x.Id, FirstNamePatient = x.FirstName, LastNamePatient = x.LastName }).ToListAsync();
 
             return Ok(donorPatients);
         }
@@ -45,7 +44,7 @@ namespace Proiect.Controllers
             //        from patients p
             //        where d.id = p.DonorId >= 1
             // transformam sql query intr o lista
-            var donor = await _donorRepository.Donors
+            var donor = await _context.Donors
                 .Include(x => x.Patients)
                 .Where(x => x.Patients.Count() >= 1)
                 .ToListAsync();
@@ -65,7 +64,7 @@ namespace Proiect.Controllers
             //        where d.id = p.DonorId >= 1
             // order by firstname
             // transformam sql query intr o lista
-            var donor = await _donorRepository.Donors
+            var donor = await _context.Donors
                 .Include(x => x.Patients)
                 .Where(x => x.Patients.Count() >= 1)
                 .OrderBy( x => x.FirstName)
@@ -73,6 +72,21 @@ namespace Proiect.Controllers
 
 
             return Ok(donor);
+        }
+
+        [HttpGet("get-groupby")]
+        public async Task<IActionResult> GetDonorPatientsAge()
+        {
+
+            //group by average
+
+            var patientAge = _context.Patients.GroupBy(x => x.DonorId).Select(x => new
+            {
+                Key = x.Key,
+                AverageAge = x.Average(x => x.Age)
+            }).ToList();
+
+            return Ok(patientAge);
         }
 
         /* [HttpPut("updatePassword")] //?id=1

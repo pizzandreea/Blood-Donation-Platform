@@ -22,7 +22,7 @@ namespace Proiect.Controllers
 
 
         [HttpPut("updateAge")] //?id=1
-        public async Task<IActionResult> UpdatePatientsAge([FromQuery] int id, [FromQuery] string name)
+        public async Task<IActionResult> UpdatePatientsAge([FromQuery] int id)
         {
             var patient = await _context.Patients.FirstOrDefaultAsync(x => x.Id == id);
             patient.Age = patient.Age + 1;
@@ -31,8 +31,6 @@ namespace Proiect.Controllers
 
             return Ok(patient.Age);
         }
-
-        
 
     }
 }
