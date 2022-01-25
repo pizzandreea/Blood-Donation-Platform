@@ -1,16 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Proiect.DAL.Configurations;
 using Proiect.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Proiect.DAL
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User, Role, int, IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
+   
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -24,10 +23,8 @@ namespace Proiect.DAL
         public DbSet<PatientMedicine> PatientMedicines { get; set; }
 
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseLoggerFactory(LoggerFactory.Create(options => options.AddConsole()));
-        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseLoggerFactory(LoggerFactory.Create(options => options.AddConsole()));
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
