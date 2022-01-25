@@ -19,6 +19,7 @@ namespace Proiect.Controllers
 
         public DonorsController(IDonorRepository donorRepository)
         {
+
             _donorRepository = donorRepository;
         }
 
