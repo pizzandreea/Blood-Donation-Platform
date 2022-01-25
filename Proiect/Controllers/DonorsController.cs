@@ -74,6 +74,7 @@ namespace Proiect.Controllers
             return Ok(donor);
         }
 
+        //the average age of the patients of a donor and how many of them are
         [HttpGet("get-groupby")]
         public async Task<IActionResult> GetDonorPatientsAge()
         {
@@ -83,11 +84,15 @@ namespace Proiect.Controllers
             var patientAge = _context.Patients.GroupBy(x => x.DonorId).Select(x => new
             {
                 Key = x.Key,
-                AverageAge = x.Average(x => x.Age)
+                AverageAge = x.Average(x => x.Age),
+                Count = x.Count()
             }).ToList();
 
             return Ok(patientAge);
         }
+
+
+
 
         /* [HttpPut("updatePassword")] //?id=1
          public async Task<IActionResult> UpdatePatientsAge([FromQuery] int id, [FromQuery] string newpassword)

@@ -35,9 +35,15 @@ namespace Proiect.DAL.Repositories
             return donors;
         }
 
-        public async Task<IQueryable<Donor>> GetAllQuery()
+        public async Task<IQueryable<Donor>> GetAllWithPatientInfoQuery()
         {
             var query = _context.Donors.AsQueryable();
+            return query;
+        }
+
+        public async Task<IQueryable<Donor>> GetAllQuery()
+        {
+            var query = _context.Donors.Include(d => d.Patients).Include(d => d.Address).AsQueryable();
             return query;
         }
 
