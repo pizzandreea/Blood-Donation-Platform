@@ -18,6 +18,9 @@ namespace Proiect.DAL.Entities
 
         public virtual Address Address { get; set; }
 
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+
         public virtual ICollection<Patient> Patients { get; set;}
         
     }

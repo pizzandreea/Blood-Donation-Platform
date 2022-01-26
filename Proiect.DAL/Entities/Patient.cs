@@ -25,6 +25,9 @@ namespace Proiect.DAL.Entities
         public int? DoctorId { get; set; }
         public virtual Doctor Doctor { get; set; }
 
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+
         // fiecare pacient poate lua mai multe medicamente
         public virtual ICollection<PatientMedicine> PatientMedicines { get; set; }
     }
