@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Proiect.DAL;
@@ -11,6 +12,7 @@ namespace Proiect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PatientsController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -22,6 +24,7 @@ namespace Proiect.Controllers
 
 
         [HttpPut("updateAge")] //?id=1
+        [Authorize(Roles = ("Admin,Doctor"))]
         public async Task<IActionResult> UpdatePatientsAge([FromQuery] int id)
         {
             var patient = await _context.Patients.FirstOrDefaultAsync(x => x.Id == id);

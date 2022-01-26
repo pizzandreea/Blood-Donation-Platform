@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Proiect.DAL.Repositories
 {
-    public class DoctorRepository : Repository<Doctor>
+    public class DoctorRepository : Repository<Doctor>, IDoctorRepository
     {
         private readonly AppDbContext _context;
 

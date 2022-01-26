@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proiect.BLL.Interfaces;
 using Proiect.BLL.Models;
@@ -11,6 +12,7 @@ namespace Proiect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class AuthController : ControllerBase
     {
         private readonly IAuthManager _authManager;
@@ -21,6 +23,7 @@ namespace Proiect.Controllers
         }
 
         [HttpPost("Register")]
+        
 
         public async Task<IActionResult> Register([FromBody] RegisterModel registerModel)
         {
