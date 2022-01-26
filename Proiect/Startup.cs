@@ -15,11 +15,14 @@ using Proiect.DAL;
 using Proiect.DAL.Entities;
 using Proiect.DAL.Interfaces;
 using Proiect.DAL.Repositories;
+using Proiect.BLL.Managers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Proiect.BLL.Interfaces;
+using Proiect.BLL.Helpers;
 
 namespace Proiect
 {
@@ -43,6 +46,9 @@ namespace Proiect
                 x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve);
 
             services.AddTransient<IDonorRepository, DonorRepository>();
+            services.AddTransient<ITokenHelper, TokenHelper>();
+            services.AddTransient<IAuthManager, AuthManager>();
+            services.AddTransient<InitialSeed>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect", Version = "v1" });
@@ -90,8 +96,9 @@ namespace Proiect
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, InitialSeed initialSeed)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -109,6 +116,8 @@ namespace Proiect
             {
                 endpoints.MapControllers();
             });
+
+            initialSeed.CreateRoles();
         }
     }
 }
