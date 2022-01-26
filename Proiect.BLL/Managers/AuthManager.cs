@@ -102,7 +102,7 @@ namespace Proiect.BLL.Managers
 
                     };
 
-                    await _unitOfWork.Patient.Create(patient);
+                    await _unitOfWork.Patients.Create(patient);
 
 
                 }
