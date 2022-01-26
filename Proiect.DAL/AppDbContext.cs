@@ -21,8 +21,7 @@ namespace Proiect.DAL
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<PatientMedicine> PatientMedicines { get; set; }
-
-
+        public object Doctors { get; internal set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseLoggerFactory(LoggerFactory.Create(options => options.AddConsole()));
 
