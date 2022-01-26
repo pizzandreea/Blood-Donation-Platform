@@ -72,16 +72,33 @@ namespace Proiect.BLL.Managers
             if(result.Succeeded)
             {
                 await _userManager.AddToRoleAsync(user, registerModel.Role);
-                //if(registerModel.Role == "Donator")
-                //{
-                //    var donator = new Donor
-                //    {
-                //        FirstName = registerModel.Email,
-                //        LastName = registerModel.Email
-                //    };
-                    
-                //}
-                
+                if (registerModel.Role == "Donator")
+                {
+                    var donator = new Donor
+                    {
+                        FirstName = registerModel.Email,
+                        LastName = registerModel.Email,
+                        User = user,
+                        UserId = user.Id
+
+                    };
+
+                }
+
+                else if(registerModel.Role == "Pacient")
+                {
+                    var pacient = new Patient 
+                    {
+                        FirstName = registerModel.Email,
+                        LastName = registerModel.Email,
+                        User = user,
+                        UserId = user.Id
+
+                    };
+
+
+                }
+
                 return true;
 
             }
