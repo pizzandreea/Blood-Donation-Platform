@@ -7,11 +7,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Proiect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AddressesController : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -23,6 +25,7 @@ namespace Proiect.Controllers
 
         
         [HttpPost("AddAddress")]
+        [Authorize(Roles = ("Admin"))]
         public async Task<IActionResult> AddAddress([FromBody] Address address)
         {
             
@@ -50,6 +53,7 @@ namespace Proiect.Controllers
         }
 
         [HttpGet("Get/{id}")]
+        [Authorize(Roles = ("Admin"))]
         public async Task<IActionResult> GetAddress([FromRoute] int id)
         {
             //var address = await _context.Addresses.FindAsync(id);

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Proiect.BLL.Interfaces;
 using Proiect.DAL.Interfaces;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace Proiect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class Donorsv2Controller : ControllerBase
     {
         private readonly IDonorManager _donorManager;
@@ -19,6 +21,7 @@ namespace Proiect.Controllers
         }
 
         [HttpGet("get-select/{id}")]
+        [Authorize(Roles = ("Admin,Donator,Doctor"))]
         public async Task<IActionResult> GetDonorPatientsSelect([FromRoute] int id)
         {
 
@@ -37,6 +40,7 @@ namespace Proiect.Controllers
         }
 
         [HttpGet("get-join")]
+        [Authorize(Roles = ("Admin,Doctor"))]
         public async Task<IActionResult> GetDonorPatientsJoin()
         {
             // select *
@@ -60,6 +64,7 @@ namespace Proiect.Controllers
 
 
         [HttpGet("get-orderby")]
+        [Authorize(Roles = ("Admin,Donator,Doctor"))]
         public async Task<IActionResult> GetDonorPatientsOrdered()
         {
             // select *
@@ -78,6 +83,7 @@ namespace Proiect.Controllers
         }
 
         [HttpGet("get-modify")]
+        [Authorize(Roles = ("Admin,Donator"))]
         public async Task<IActionResult> GetModify()
         {
             var list = await _donorManager.ModifyDonor();

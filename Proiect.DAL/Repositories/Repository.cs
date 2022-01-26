@@ -1,4 +1,5 @@
-﻿using Proiect.DAL.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using Proiect.DAL.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,22 @@ namespace Proiect.DAL.Repositories
         {
             _context = context;
         }
+
+        virtual public async Task<List<T>> GetAll()
+        {
+            return await _context.Set<T>().ToListAsync();
+        }
         virtual public async Task Create(T entity)
         {
+            await _context.Set<T>().AddAsync(entity);
         }
-        virtual public async Task Delete(T entity)
+        virtual public void Delete(T entity)
         {
+            _context.Set<T>().Remove(entity);
         }
-        virtual public async Task Update(T entity)
+        virtual public void Update(T entity)
         {
+            _context.Set<T>().Update(entity);
         }
 
     }

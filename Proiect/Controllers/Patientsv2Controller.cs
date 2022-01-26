@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proiect.BLL.Interfaces;
 using Proiect.DAL.Interfaces;
@@ -11,6 +12,7 @@ namespace Proiect.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class Patientsv2Controller : ControllerBase
     {
 
@@ -23,6 +25,7 @@ namespace Proiect.Controllers
         }
 
         [HttpPut("updateAge")] //?id=1
+        [Authorize(Roles = ("Admin,Patient"))]
         public async Task<IActionResult> UpdatePatientsAge([FromQuery] int id)
         {
             var patient = await _patientManager.GetById(id);

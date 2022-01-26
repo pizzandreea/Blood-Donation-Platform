@@ -37,5 +37,10 @@ namespace Proiect.DAL.Repositories
         {
             _context.Dispose();
         }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return _context.SaveChangesAsync();
+        }
     }
 }

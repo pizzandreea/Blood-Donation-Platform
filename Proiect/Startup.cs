@@ -47,15 +47,21 @@ namespace Proiect
             services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve);
 
-            services.AddTransient<IDonorRepository, DonorRepository>();
             services.AddTransient<ITokenHelper, TokenHelper>();
             services.AddTransient<IAuthManager, AuthManager>();
-            services.AddTransient<InitialSeed>();
             services.AddTransient<IDonorManager, DonorManager>();
-
-            services.AddTransient<IPatientRepository, PatientRepository>();
             services.AddTransient<IPatientManager, PatientManager>();
+            services.AddTransient<InitialSeed>();
 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            
+
+            services.AddTransient<IDoctorRepository, DoctorRepository>();
+            services.AddTransient<IAddressRepository, AddressRepository>();
+            services.AddTransient<IDonorRepository, DonorRepository>();
+            services.AddTransient<IMedicineRepository, MedicineRepository>();
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect", Version = "v1" });
