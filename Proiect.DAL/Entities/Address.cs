@@ -16,5 +16,6 @@ namespace Proiect.DAL.Entities
         public int PostalCode { get; set; }
         public string Phone { get; set; }
         public virtual Donor Donor { get; set; }
+        public virtual Doctor Doctor { get; set; }
     }
 }
