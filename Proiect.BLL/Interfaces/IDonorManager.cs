@@ -6,23 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proiect.DAL.Interfaces
+namespace Proiect.BLL.Interfaces
 {
-    public interface IDonorRepository 
+    public interface IDonorManager
     {
-        
+        Task<List<string>> ModifyDonor();
         Task<List<Donor>> GetAll();
-        Task<DonorModel> GetById(int id);
-        Task Create(Donor student);
-        Task Update(Donor student);
 
-        Task Delete(Donor student);
+        Task<DonorModel> GetById( int id);
         Task<List<Donor>> WhereCount(int count);
-
         Task<List<Donor>> OrderByName();
-
-        Task<IQueryable<Donor>> GetAllQuery();
-
 
     }
 }

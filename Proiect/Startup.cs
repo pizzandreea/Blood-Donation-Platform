@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Proiect.BLL.Interfaces;
+using Proiect.BLL.Managers;
 using Proiect.DAL;
 using Proiect.DAL.Interfaces;
 using Proiect.DAL.Repositories;
@@ -38,6 +40,11 @@ namespace Proiect
                 x.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve);
 
             services.AddTransient<IDonorRepository, DonorRepository>();
+            services.AddTransient<IDonorManager, DonorManager>();
+
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IPatientManager, PatientManager>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect", Version = "v1" });

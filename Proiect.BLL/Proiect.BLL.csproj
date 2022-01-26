@@ -8,9 +8,4 @@
     <ProjectReference Include="..\Proiect.DAL\Proiect.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Managers\" />
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>

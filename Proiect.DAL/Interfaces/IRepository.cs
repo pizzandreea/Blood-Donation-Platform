@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Proiect.DAL.Interfaces
 {
-    public class IRepository<T>
+    public interface IRepository<T> where T : class
     {
-        /*public List<T> GetAll();
-        public void Add(T entity);
-        public void Update(T entity);*/
+        Task Update(T entity);
+        Task Create(T entity);
+        Task Delete(T entity);
     }
 }
