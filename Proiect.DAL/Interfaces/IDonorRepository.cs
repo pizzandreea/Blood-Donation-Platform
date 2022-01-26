@@ -13,10 +13,10 @@ namespace Proiect.DAL.Interfaces
         
         Task<List<Donor>> GetAll();
         Task<DonorModel> GetById(int id);
-        Task Create(Donor student);
-        Task Update(Donor student);
+        Task Create(Donor donor);
+        Task Update(Donor donor);
 
-        Task Delete(Donor student);
+        Task Delete(Donor donor);
         Task<List<Donor>> WhereCount(int count);
 
         Task<List<Donor>> OrderByName();

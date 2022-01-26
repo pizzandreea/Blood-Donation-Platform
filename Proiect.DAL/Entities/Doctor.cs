@@ -17,6 +17,9 @@ namespace Proiect.DAL.Entities
         //one to one
         public virtual Address Address { get; set; }
 
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
+
         //many to many
         public virtual ICollection<DoctorLab> DoctorLab { get; set; }
 
