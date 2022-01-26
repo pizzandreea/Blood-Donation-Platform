@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace Proiect.DAL.Configurations
 {
-    
-    public class DonorConfiguration : IEntityTypeConfiguration<Donor>
+    public class DoctorConfiguration
     {
-        public void Configure(EntityTypeBuilder<Donor> builder)
+        public void Configure(EntityTypeBuilder<Doctor> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.FirstName)
@@ -23,13 +22,7 @@ namespace Proiect.DAL.Configurations
                 .HasColumnType("nvarchar(100)")
                 .HasMaxLength(100);
 
-            builder.Property(x => x.BloodType)
-                .HasColumnType("nvarchar(5)")
-                .HasMaxLength(5);
-
-            builder.Property(x => x.Gender)
-                .HasColumnType("nvarchar(10)")
-                .HasMaxLength(10);
+            
 
             /*builder.HasOne(x => x.Address)
                 .WithOne(x => x.Donor)
@@ -37,5 +30,4 @@ namespace Proiect.DAL.Configurations
 
         }
     }
-    
 }

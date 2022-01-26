@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Proiect.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Proiect.DAL.Entities
+namespace Proiect.DAL.Models
 {
-    public class Patient
+    public class PatientModel
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string BloodType { get; set; }
@@ -18,15 +18,6 @@ namespace Proiect.DAL.Entities
         //fiecare pacient are un donator
         public int? DonorId { get; set; }
 
-        public virtual Donor Donor { get; set; }
-
-        //fiecare pacient are cate un doctor
-
-        public int? DoctorId { get; set; }
-        public virtual Doctor Doctor { get; set; }
-
-        public int UserId { get; set; }
-        public virtual User User { get; set; }
 
         // fiecare pacient poate lua mai multe medicamente
         public virtual ICollection<PatientMedicine> PatientMedicines { get; set; }
