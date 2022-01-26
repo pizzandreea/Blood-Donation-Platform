@@ -20,6 +20,11 @@ namespace Proiect.DAL.Entities
 
         public virtual Donor Donor { get; set; }
 
+        //fiecare pacient are cate un doctor
+
+        public int? DoctorId { get; set; }
+        public virtual Doctor Doctor { get; set; }
+
         public int UserId { get; set; }
         public virtual User User { get; set; }
 

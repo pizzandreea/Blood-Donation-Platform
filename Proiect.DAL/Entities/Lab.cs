@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Proiect.DAL.Entities
 {
-    class Lab
+    public class Lab
     {
+        int Id { get; set; }
+        string Type { get; set; }
+
+        public virtual ICollection<DoctorLab> DoctorLab { get; set; }
 
     }
 }
