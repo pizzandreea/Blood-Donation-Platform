@@ -16,6 +16,6 @@ namespace Proiect.DAL.Interfaces
 
         void Complete();
 
-        Task<bool> SaveChangesAsync();
+        Task<int> SaveChangesAsync();
     }
 }

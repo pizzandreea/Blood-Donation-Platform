@@ -119,7 +119,8 @@ namespace Proiect.BLL.Managers
                     await _unitOfWork.Doctors.Create(doctor);
                 }
 
-                return await _unitOfWork.SaveChangesAsync();
+                await _unitOfWork.SaveChangesAsync();
+                return true;
 
             }
             else

@@ -8,8 +8,8 @@ namespace Proiect.DAL.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        Task Update(T entity);
+        void Update(T entity);
         Task Create(T entity);
-        Task Delete(T entity);
+        void Delete(T entity);
     }
 }
