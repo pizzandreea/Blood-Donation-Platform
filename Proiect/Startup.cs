@@ -11,6 +11,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Proiect.BLL.Interfaces;
+using Proiect.BLL.Managers;
 using Proiect.DAL;
 using Proiect.DAL.Entities;
 using Proiect.DAL.Interfaces;
@@ -49,6 +51,11 @@ namespace Proiect
             services.AddTransient<ITokenHelper, TokenHelper>();
             services.AddTransient<IAuthManager, AuthManager>();
             services.AddTransient<InitialSeed>();
+            services.AddTransient<IDonorManager, DonorManager>();
+
+            services.AddTransient<IPatientRepository, PatientRepository>();
+            services.AddTransient<IPatientManager, PatientManager>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect", Version = "v1" });
