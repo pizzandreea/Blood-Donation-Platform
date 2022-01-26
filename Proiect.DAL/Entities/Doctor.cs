@@ -8,10 +8,10 @@ namespace Proiect.DAL.Entities
 {
     public class Doctor
     {
-        int Id { get; set; }
+        public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        int Salary { get; set; }
+        public int Salary { get; set; }
         public int AddressId { get; set; }
 
         //one to one
@@ -21,7 +21,7 @@ namespace Proiect.DAL.Entities
         public virtual User User { get; set; }
 
         //many to many
-        public virtual ICollection<DoctorLab> DoctorLab { get; set; }
+        public virtual ICollection<DoctorLab> DoctorLabs { get; set; }
 
         //one to many
         public virtual ICollection<Patient> Patients { get; set; }

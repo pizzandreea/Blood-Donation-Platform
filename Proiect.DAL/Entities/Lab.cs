@@ -8,10 +8,10 @@ namespace Proiect.DAL.Entities
 {
     public class Lab
     {
-        int Id { get; set; }
-        string Type { get; set; }
+        public int Id { get; set; }
+        public string Type { get; set; }
 
-        public virtual ICollection<DoctorLab> DoctorLab { get; set; }
+        public virtual ICollection<DoctorLab> DoctorLabs { get; set; }
 
     }
 }

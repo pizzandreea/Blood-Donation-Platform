@@ -14,7 +14,7 @@ namespace Proiect.DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<Donor> builder)
         {
-
+            builder.HasKey(x => x.Id);
             builder.Property(x => x.FirstName)
                 .HasColumnType("nvarchar(100)")
                 .HasMaxLength(100);

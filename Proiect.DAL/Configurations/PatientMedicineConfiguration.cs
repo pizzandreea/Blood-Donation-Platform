@@ -13,6 +13,7 @@ namespace Proiect.DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<PatientMedicine> builder)
         {
+            builder.HasKey(x => x.Id);
             builder.HasOne(p => p.Patient)
                 .WithMany(p => p.PatientMedicines)
                 .HasForeignKey(p => p.PatientId);

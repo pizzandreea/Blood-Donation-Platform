@@ -9,15 +9,19 @@ using System.Threading.Tasks;
 
 namespace Proiect.DAL.Configurations
 {
-    public class MedicineConfiguration : IEntityTypeConfiguration<Medicine>
+    public class LabConfiguration : IEntityTypeConfiguration<Lab>
     {
-        
-        public void Configure(EntityTypeBuilder<Medicine> builder)
+        public void Configure(EntityTypeBuilder<Lab> builder)
         {
+
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name)
-                .HasColumnType("nvarchar(200)")
-                .HasMaxLength(200);
+
+            builder.Property(x => x.Type)
+                .HasColumnType("nvarchar(100)")
+                .HasMaxLength(100);
+
+
+
         }
     }
 }

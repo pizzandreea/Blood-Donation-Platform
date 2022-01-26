@@ -15,5 +15,7 @@ namespace Proiect.DAL.Interfaces
         IDoctorRepository Doctors { get; }
 
         void Complete();
+
+        Task<bool> SaveChangesAsync();
     }
 }

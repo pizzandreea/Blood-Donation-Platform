@@ -102,7 +102,7 @@ namespace Proiect.BLL.Managers
 
                     };
 
-                    await _unitOfWork.Patient.Create(patient);
+                    await _unitOfWork.Patients.Create(patient);
 
 
                 }
@@ -115,9 +115,11 @@ namespace Proiect.BLL.Managers
                         User = user,
                         UserId = user.Id
                     };
+
+                    await _unitOfWork.Doctors.Create(doctor);
                 }
 
-                return true;
+                return await _unitOfWork.SaveChangesAsync();
 
             }
             else
